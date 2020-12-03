@@ -20,6 +20,6 @@ class User < ApplicationRecord
     
    end
 
-    validates :email,    uniqueness: true
-    validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,  }\z/i }
+    # validates :email,    uniqueness: true
+    # validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,  }\z/i }
 end
