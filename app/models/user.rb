@@ -19,6 +19,8 @@ class User < ApplicationRecord
     end
     
    end
+
+   has_many :items
       # validates :email, presence: true
     # validates :email,    uniqueness: { message: "Include both letters and numbers" }
     validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i , message: "Include both letters and numbers" }
