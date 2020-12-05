@@ -9,4 +9,19 @@ class Item < ApplicationRecord
     has_one_attached :image
 
     belongs_to :user
+
+    with_options presence: true do
+      validates :name
+      validates :introduction
+      validates :price
+    end
+    
+    with_options numericality: { other_than: 1 } do
+      validates :category_id
+      validates :status_id
+      validates :charge_id
+      validates :prefecture_id
+      validates :term_id
+    end
+
 end
