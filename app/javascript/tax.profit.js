@@ -5,15 +5,15 @@ function taxProfit () {
     const itemPriceCount = itemPrice.value;
 
     const tax = itemPriceCount / 10;
-    const myProfit = itemPriceCount - tax;
+    const taxFloor = Math.floor(tax);
+    const myProfit = itemPriceCount - taxFloor;
 
     const addTaxPrice = document.getElementById("add-tax-price");
     const profit = document.getElementById("profit");
 
-    addTaxPrice.innerHTML = tax;
+    addTaxPrice.innerHTML = taxFloor;
     profit.innerHTML = myProfit;
   });
 }
 
 window.addEventListener("load", taxProfit);
-
