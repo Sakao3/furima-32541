@@ -15,7 +15,7 @@ class Item < ApplicationRecord
       validates :introduction
       validates :price
     end
-    
+
     with_options numericality: { other_than: 1 } do
       validates :category_id
       validates :status_id
@@ -23,5 +23,14 @@ class Item < ApplicationRecord
       validates :prefecture_id
       validates :term_id
     end
-
+    
 end
+
+
+
+    # イメージのバリデーション失敗
+    # validates :image, presence: true, if: :was_attached?
+    # def was_attached?
+    #   self.image.attached?
+    # end
+
