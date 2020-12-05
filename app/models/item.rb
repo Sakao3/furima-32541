@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
+
     belongs_to :category
     belongs_to :status
     belongs_to :charge
@@ -11,26 +12,25 @@ class Item < ApplicationRecord
     belongs_to :user
 
     with_options presence: true do
+      validates :image
       validates :name
       validates :introduction
-      validates :price
-    end
-
-    with_options numericality: { other_than: 1 } do
-      validates :category_id
-      validates :status_id
-      validates :charge_id
-      validates :prefecture_id
-      validates :term_id
-    end
     
+      with_options numericality: { other_than: 1, message: "Select"} do
+        validates :category_id
+        validates :status_id
+        validates :charge_id
+        validates :prefecture_id
+        validates :term_id
+      end
+    end
+
+    validates :price, presence: true
+    validates :price, numericality: { with: /\A[0-9]+\z/ ,message: "Half-width number"}
+    validates :price, numericality: {
+                                      greater_than_or_equal_to: 300,
+                                      less_than_or_equal_to: 9999999,
+                                      message: "Out of setting range"
+                                      }
+
 end
-
-
-
-    # イメージのバリデーション失敗
-    # validates :image, presence: true, if: :was_attached?
-    # def was_attached?
-    #   self.image.attached?
-    # end
-
