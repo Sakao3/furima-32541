@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :items
+
   with_options presence: true do
     validates :nickname
     validates :birthday
@@ -19,8 +21,7 @@ class User < ApplicationRecord
     end
     
    end
-      # validates :email, presence: true
-    # validates :email,    uniqueness: { message: "Include both letters and numbers" }
-    validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i , message: "Include both letters and numbers" }
+
+  validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i , message: "Include both letters and numbers" }
 
 end
