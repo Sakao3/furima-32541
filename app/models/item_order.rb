@@ -11,6 +11,9 @@ class ItemOrder
     validates :block
     validates :telephone_number, format: { with: /\A[0-9,０-９]+\z/ ,message: "Input only number" }, 
                                  length: {maximum: 11 }
+    
+    validates :user_id
+    validates :item_id
   end
 
   def save
