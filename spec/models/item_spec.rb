@@ -21,7 +21,6 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "User must exist"
       end
-
       it "imageを選択していない場合" do
         @item.image = nil
         @item.valid?
@@ -88,4 +87,3 @@ RSpec.describe Item, type: :model do
   end
 
 end
-
