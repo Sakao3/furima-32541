@@ -38,15 +38,11 @@ class OrdersController < ApplicationController
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
+      amount: @item.price,
       card: item_order_params[:token],
       currency: 'jpy'
     )
   end
 
-
 end
 
-# @を付けて誤情報を送り、elseをrenderにしていると、エラーメッセージは出るが、情報が残る
-
-# @を外して誤情報を送り、elseをredirectにしているとエラーメッセージはでないが情報は残らない
-# →＠なしのrenderはビューにインスタンス変数を入れているためエラーが出る
