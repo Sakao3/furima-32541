@@ -6,15 +6,15 @@ class OrdersController < ApplicationController
     @item_order=ItemOrder.new
     if user_signed_in? && current_user.id == @item.user_id
       redirect_to root_path
+    elsif @item.order.present?
+      redirect_to root_path
     end
   end
 
   def create
     @item_order=ItemOrder.new(item_order_params)
     if @item_order.valid?
-
       pay_item
-
       @item_order.save
       redirect_to root_path
     else
@@ -32,8 +32,6 @@ class OrdersController < ApplicationController
   def item_find
     @item=Item.find(params[:item_id])
   end
-
-
 
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
