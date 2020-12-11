@@ -17,6 +17,7 @@
 
  - has_many :items
  - has_many :orders
+ - has_many :comments
 
 
   ## items テーブル
@@ -37,6 +38,7 @@
 
  - belongs_to :user
  - has_one :orders
+ - has_many :comments
  
 
   ## orders テーブル
@@ -67,3 +69,19 @@
  ### Association
 
  - belongs_to :order
+
+
+  ## comments テーブル
+
+ | Column           | Type       | Options                        |
+ |------------------|------------|--------------------------------|
+ | comment          |string      | null: false, foreign_key: true |
+ | item             | references | null: false, foreign_key: true |
+ | user             | references | null: false, foreign_key: true |
+
+ ### Association
+
+ - belongs_to :item
+ - belongs_to :user
+ 
+ 

@@ -81,6 +81,7 @@
   </div>
   <%# /商品の概要 %>
 
+  <%# コメント記入欄 %>
   <div class="comment-box">
     <form>
       <textarea class="comment-text"></textarea>
@@ -94,7 +95,24 @@
         <span>コメントする<span>
       </button>
     </form>
-  </div>
+  </div> 
+  <%# コメント記入欄ここまで %>
+<div>
+  <% @comments.each do |comment| %>
+  <div>
+  <%= comment.comment %>
+  <%= comment.user.nickname%>
+  <div>
+  <% end%>
+<div>
+  <%= form_with(model:[@item, @comment], local: true) do |f| %>
+  <%= f.text_area :comment %>
+  <%= f.submit "コメントする" %>
+  <% end %>
+</div>
+
+
+
   <div class="links">
     <a href="#" class="change-item-btn">
       ＜ 前の商品
