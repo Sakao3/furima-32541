@@ -1,8 +1,14 @@
 class CommentsController < ApplicationController
   def create
-    comment = Comment.create(comment_params)
-    redirect_to "/items/#{comment.item_id}" 
-    # redirect_to root_path
+    @comment = Comment.new(comment_params)
+    if @comment.valid?
+      @comment.save
+    redirect_to item_path(@comment.item) 
+    else
+      @item = @comment.item
+      @comments = @item.comments.includes(:user).order(id: "DESC")
+      render "items/show"
+    end
   end
 
   private
