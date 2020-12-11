@@ -12,12 +12,14 @@ class Item < ApplicationRecord
     belongs_to :user
     has_one :order
 
+
+    validates :image, presence: { message: "を添付してください" }
+
     with_options presence: true do
-      validates :image
       validates :name
       validates :introduction
     
-      with_options numericality: { other_than: 1, message: "Select"} do
+      with_options numericality: { other_than: 1, message: "を選択してください"} do
         validates :category_id
         validates :status_id
         validates :charge_id
@@ -27,11 +29,11 @@ class Item < ApplicationRecord
     end
 
     validates :price, presence: true
-    validates :price, numericality: { with: /\A[0-9]+\z/ ,message: "Half-width number"}
+    validates :price, numericality: { with: /\A[0-9]+\z/ ,message: "は半角での記入をお願いします"}
     validates :price, numericality: {
                                       greater_than_or_equal_to: 300,
                                       less_than_or_equal_to: 9999999,
-                                      message: "Out of setting range"
+                                      message: "の設定範囲を超えております"
                                       }
 
 end

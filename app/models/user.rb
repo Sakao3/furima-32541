@@ -11,18 +11,18 @@ class User < ApplicationRecord
     validates :nickname
     validates :birthday
 
-    with_options format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/ , message: "Full-width characters" } do
+    with_options format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/ , message: "は全て全角での入力をお願いします" } do
       validates :last_name
       validates :first_name
     end
 
-    with_options format: { with: /\A[ァ-ヶ]+\z/ , message: "Full-width katakana characters" } do
+    with_options format: { with: /\A[ァ-ヶ]+\z/ , message: "はカタカナでの入力をお願いします" } do
       validates :last_name_kana
       validates :first_name_kana
     end
     
    end
 
-  validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i , message: "Include both letters and numbers" }
+  validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i , message: "は英語と数字を混同させてください" }
 
 end
