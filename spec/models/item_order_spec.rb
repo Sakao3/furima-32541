@@ -21,47 +21,47 @@ RSpec.describe ItemOrder, type: :model do
       it "postal_codeが空欄の場合" do
         @item_order.postal_code = nil
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include "Postal code can't be blank"
+        expect(@item_order.errors.full_messages).to include "郵便番号を入力してください"
       end
       it "postal_codeに「-」を使用していない場合" do
         @item_order.postal_code = 0000000
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include "Postal code Input correctly"
+        expect(@item_order.errors.full_messages).to include "郵便番号は半角数字のみで間に「-」を入力してください"
       end
       it "prefecture_id[1]を選択している場合" do
         @item_order.prefecture_id = 1
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include "Prefecture Select"
+        expect(@item_order.errors.full_messages).to include "都道府県を選択してください"
       end
       it "cityが空欄の場合" do
         @item_order.city = nil
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include "City can't be blank"
+        expect(@item_order.errors.full_messages).to include "住んでいる都市を入力してください"
       end
       it "blockが空欄の場合" do
         @item_order.block = nil
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include "Block can't be blank"
+        expect(@item_order.errors.full_messages).to include "住んでいる区を入力してください"
       end
       it "telephone_numberが空欄の場合" do
         @item_order.telephone_number = nil
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include "Telephone number can't be blank"
+        expect(@item_order.errors.full_messages).to include "お電話番号を入力してください"
       end
       it "telephone_numberが数字以外を使用している場合" do
         @item_order.telephone_number = "テストtestTEST"
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include "Telephone number Input only number"
+        expect(@item_order.errors.full_messages).to include "お電話番号は数字での入力をお願いします"
       end
       it "telephone_numberが11文字以上の場合" do
         @item_order.telephone_number = "000000000000"
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include "Telephone number is too long (maximum is 11 characters)"
+        expect(@item_order.errors.full_messages).to include "お電話番号は11文字以内で入力してください"
       end
       it "カード情報が全て埋まっていない場合＝Tokenが取得できない場合" do
         @item_order.token = nil
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include "Token can't be blank"
+        expect(@item_order.errors.full_messages).to include "カード情報を正しく入力してください"
       end
     end
 
