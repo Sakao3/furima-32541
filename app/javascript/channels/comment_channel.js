@@ -13,15 +13,24 @@ consumer.subscriptions.create("CommentChannel", {
     // Called when there's incoming data on the websocket for this channel
 
     // 自分でコメントアウト
-    // const html = `<div>
-    //               ${data.content.comment}
-    //               ${data.content.user_id.nickname}
-    //               </p>`;
-    // const comments = document.getElementById('comment_box');
-    // const newComment = document.getElementById('comment_comment');
-    // comments.insertAdjacentHTML('afterbegin', html);
-    // newComment.value='';
+    const html = `
+    <div class = "a-comment">
+      <div class = "comment-name" >
+      ${ data.nickname }
+    </div>
+    <div class = "comment-contents">
+      ${ data.content.comment }
+    </div>
+    </div>`;
+    const commentIndex = document.getElementById('comment_index');
+    const newComment = document.getElementById('comment_comment');
+    commentIndex.insertAdjacentHTML('afterbegin', html);
+    newComment.value='';
 
-
+    // 二回目以降送信できない問題解消
+    const submit = document.getElementById("submit_btn");
+    submit.removeAttribute("disabled");
   }
 });
+
+

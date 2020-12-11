@@ -172,7 +172,6 @@
   font-size: 18px;
   border-radius: 100px;
   margin: 2vh auto;
-
 }
 
 .comment-flag {
@@ -207,10 +206,10 @@
 }
 
 .comment-index{
-  /* border: solid 1px #dedede; */
-  height: 30vh;
+  height: 29vh;
   overflow: scroll;
   width: 100%;
+  border-top: 1px solid #dedede;
 }
 
 .a-comment{
