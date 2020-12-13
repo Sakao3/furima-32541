@@ -21,6 +21,9 @@ consumer.subscriptions.create("CommentChannel", {
     <div class = "comment-contents">
       ${ data.content.comment }
     </div>
+    <div class = "delete-btn">
+      <a href="#">削除</a> 
+    </div>
     </div>`;
     const commentIndex = document.getElementById('comment_index');
     const newComment = document.getElementById('comment_comment');

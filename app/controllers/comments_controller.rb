@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     if @comment.valid?
       @comment.save
-      ActionCable.server.broadcast 'comment_channel', content: @comment, nickname: @comment.user.nickname, tem_id: params[:item_id]
+      ActionCable.server.broadcast 'comment_channel', content: @comment, nickname: @comment.user.nickname, item_id: params[:item_id]
     # redirect_to item_path(@comment.item) 
     else
       @item = @comment.item
