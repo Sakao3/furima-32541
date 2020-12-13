@@ -1,8 +1,23 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
-    comment = Comment.create(comment_params)
-    redirect_to "/items/#{comment.item_id}" 
-    # redirect_to root_path
+    @comment = Comment.new(comment_params)
+    if @comment.valid?
+      @comment.save
+      ActionCable.server.broadcast 'comment_channel', content: @comment, nickname: @comment.user.nickname, item_id: params[:item_id]
+    # redirect_to item_path(@comment.item) 
+    else
+      @item = @comment.item
+      @comments = @item.comments.includes(:user).order(id: "DESC")
+      render "items/show"
+    end
+  end
+
+  def destroy
+    comment = Comment.find_by(id: params[:id],item_id: params[:item_id])
+    comment.destroy
+    redirect_to item_path(comment.item)
   end
 
   private
