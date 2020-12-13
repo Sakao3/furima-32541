@@ -90,7 +90,11 @@
             <%= comment.comment %>
           </div>
           <div class = "delete-btn">
-            <%= link_to "削除" ,item_comment_path(comment.item.id, comment.id), method: :delete %>
+            <% if user_signed_in? && current_user.id == @item.user.id%>
+              <%= link_to "削除" ,item_comment_path(comment.item.id, comment.id), method: :delete %>
+            <% else %>
+              <%= comment.id %>
+            <% end %>
           </div>
         </div>
       <% end%>
@@ -99,7 +103,7 @@
   </div>
   <%# /商品の概要 %>
 
-  <% if user_signed_in? %>
+  <% if user_signed_in? && current_user.id != @item.user.id %>
     <div class="comment-box">
       <%= form_with(model:[@item, @comment], local: true, id: "form") do |f| %>
         <%= f.text_field :comment, class:"comment-text", maxlength:"40" %>
@@ -108,8 +112,6 @@
         <p class="comment-warn">相手のことを考え丁寧なコメントを心がけましょう。<br>不快な言葉遣いなどは利用制限や退会処分となることがあります。</p>
       <% end %>
     </div>
-  <% else %>
-    <p class="out-user">***コメントはログイン後にできます***</p>
   <% end %>
 
 

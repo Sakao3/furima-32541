@@ -22,7 +22,7 @@ consumer.subscriptions.create("CommentChannel", {
       ${ data.content.comment }
     </div>
     <div class = "delete-btn">
-      <a href="#">削除</a> 
+      ${ data.content.id }
     </div>
     </div>`;
     const commentIndex = document.getElementById('comment_index');
